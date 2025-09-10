@@ -33,6 +33,7 @@ export default function DashboardPage() {
       <div className="bg-shape bg-shape1" />
       <div className="bg-shape bg-shape2" />
       <div className="max-w-5xl mx-auto w-full space-y-8 relative z-10">
+        {/* Glassmorphic sticky header */}
         <header className="sticky top-0 z-20 flex items-center justify-between px-4 py-3 rounded-2xl shadow-lg bg-white/70 backdrop-blur-md border border-blue-100 mb-4">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-500 to-fuchsia-500 text-white grid place-items-center font-bold text-lg shadow">TM</div>
@@ -41,6 +42,7 @@ export default function DashboardPage() {
           <button className="btn transition-transform hover:scale-105" onClick={() => dispatch(logout())}>Logout</button>
         </header>
 
+        {/* Task creation form */}
         <form className="card p-6 space-y-4 shadow-xl" onSubmit={onSubmit}>
           <h2 className="font-medium text-lg mb-2">Create Task</h2>
           <div className="grid sm:grid-cols-2 gap-3">
@@ -50,6 +52,7 @@ export default function DashboardPage() {
           <button className="btn w-fit transition-transform hover:scale-105 active:scale-95 shadow-lg">Add</button>
         </form>
 
+        {/* Tasks section */}
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="font-medium text-lg">Your Tasks</h2>
@@ -57,6 +60,7 @@ export default function DashboardPage() {
           </div>
           {items.length === 0 && status === 'idle' && (
             <div className="card p-10 text-center text-gray-600 flex flex-col items-center gap-4 shadow-inner">
+              {/* SVG illustration for empty state */}
               <svg width="64" height="64" fill="none" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#e0e7ff"/><path d="M20 32h24M20 40h24M20 24h24" stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round"/></svg>
               <p className="text-base">No tasks yet. Create your first task above.</p>
             </div>

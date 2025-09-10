@@ -19,7 +19,7 @@ export default function LoginPage() {
   <div className="hidden md:flex flex-col justify-between w-1/2 bg-gradient-to-br from-indigo-600 via-fuchsia-500 to-pink-400 dark:from-[#181c2b] dark:via-[#232946] dark:to-[#6d28d9] text-white p-10 relative overflow-hidden">
         <div>
           <div className="flex items-center gap-3 mb-8">
-            <a href="/" className="h-12 w-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl font-extrabold shadow-lg border-2 border-white/30 hover:bg-white/30 transition-colors" title="Go to Home">TM</a>
+            <div className="h-12 w-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl font-extrabold shadow-lg border-2 border-white/30">TM</div>
             <span className="text-2xl font-bold tracking-tight drop-shadow">TaskManager</span>
           </div>
           <h2 className="text-3xl font-extrabold mb-4 drop-shadow-lg">Welcome to your productivity hub</h2>
@@ -37,6 +37,9 @@ export default function LoginPage() {
       {/* Right login form panel */}
       <div className="flex flex-1 items-center justify-center bg-white/60 backdrop-blur-lg p-6 min-h-screen">
         <form
+          className="card w-full max-w-md p-10 space-y-6 shadow-2xl border-0 animate-fadein"
+          onSubmit={(e) => {
+            e.preventDefault()
             dispatch(login({ username, password }))
           }}
         >

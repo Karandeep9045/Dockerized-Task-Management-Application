@@ -4,6 +4,7 @@ function getInitialTheme() {
   if (typeof window === 'undefined') return 'dark'
   const stored = localStorage.getItem('theme')
   if (stored) return stored
+  // Always default to dark mode if not set
   return 'dark'
 }
 
