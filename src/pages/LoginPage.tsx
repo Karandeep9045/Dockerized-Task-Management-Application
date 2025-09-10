@@ -15,7 +15,6 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row relative">
       <DarkModeToggle />
-      {/* Left branding panel */}
   <div className="hidden md:flex flex-col justify-between w-1/2 bg-gradient-to-br from-indigo-600 via-fuchsia-500 to-pink-400 dark:from-[#181c2b] dark:via-[#232946] dark:to-[#6d28d9] text-white p-10 relative overflow-hidden">
         <div>
           <div className="flex items-center gap-3 mb-8">
@@ -30,11 +29,9 @@ export default function LoginPage() {
           </ul>
         </div>
         <div className="text-sm opacity-80 mt-10">&copy; {new Date().getFullYear()} TaskManager. All rights reserved.</div>
-        {/* Decorative shapes */}
         <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
         <div className="absolute -top-16 -left-16 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
       </div>
-      {/* Right login form panel */}
       <div className="flex flex-1 items-center justify-center bg-white/60 backdrop-blur-lg p-6 min-h-screen">
         <form
           className="card w-full max-w-md p-10 space-y-6 shadow-2xl border-0 animate-fadein"
