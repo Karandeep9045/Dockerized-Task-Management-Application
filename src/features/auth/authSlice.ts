@@ -9,23 +9,22 @@ interface AuthState {
   error?: string
 }
 
-const storedUser = localStorage.getItem('user')
-const storedToken = localStorage.getItem('token')
-
 const initialState: AuthState = {
-  user: storedUser ? JSON.parse(storedUser) : null,
-  status: 'idle',
-  error: undefined,
+  user: (() => {
+    try {
+      const stored = localStorage.getItem('user')
+      return stored ? JSON.parse(stored) : null
+    } catch { return null }
+  })(),
+  status: 'idle'
 }
 
 export const login = createAsyncThunk(
   'auth/login',
   async (credentials: { username: string; password: string }) => {
     const { data } = await api.post('/login', credentials)
-
     localStorage.setItem('token', data.token)
     localStorage.setItem('user', JSON.stringify(data.user))
-
     return data.user as User
   }
 )
