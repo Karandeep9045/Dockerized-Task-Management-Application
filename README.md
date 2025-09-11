@@ -4,6 +4,8 @@ React + TypeScript app using Redux Toolkit, React Router, Tailwind CSS, and Mock
 
 ### Run with Docker
 
+> **Note:** Make sure your Docker Engine is running before using these commands.
+
 1. Build the Docker image:
 
 ```powershell
@@ -25,8 +27,6 @@ http://localhost:4173
 Login with username: `test`, password: `test123`.
 
 ---
-
-- Data persists in localStorage under `mock_tasks`.
 
 ### Run locally
 
@@ -57,6 +57,7 @@ Open http://localhost:5173, login with username: `test`, password: `test123`.
 - React Router
 - Tailwind CSS v4 (using `@import "tailwindcss"` in `src/index.css`)
 - Mock Service Worker (MSW)
+- Data persists in localStorage under `mock_tasks`.
 
 ### Endpoints (mocked)
 
