@@ -12,6 +12,7 @@ export default function DashboardPage() {
   const { items, status } = useAppSelector((s) => s.tasks)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [newStatus, setNewStatus] = useState<'todo' | 'in-progress'>('todo')
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editTitle, setEditTitle] = useState('')
   const [editDescription, setEditDescription] = useState('')
@@ -25,9 +26,10 @@ export default function DashboardPage() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!title.trim()) return
-    dispatch(addTask({ title, description, status: 'todo' }))
+    dispatch(addTask({ title, description, status: newStatus }))
     setTitle('')
     setDescription('')
+    setNewStatus('todo')
   }
 
 
@@ -62,8 +64,16 @@ export default function DashboardPage() {
 
         <form className="card p-6 space-y-4 shadow-xl" onSubmit={onSubmit}>
           <h2 className="font-medium text-lg mb-2">Create Task</h2>
-          <div className="grid sm:grid-cols-2 gap-3">
-            <input className="input sm:col-span-2" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <div className="grid sm:grid-cols-2 gap-3 items-start">
+            <input className="input" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <select
+              className="input w-full"
+              value={newStatus}
+              onChange={(e) => setNewStatus(e.target.value as 'todo' | 'in-progress')}
+            >
+              <option value="todo">Todo</option>
+              <option value="in-progress">In progress</option>
+            </select>
             <textarea className="input sm:col-span-2" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
           </div>
           <button className="btn w-fit transition-transform hover:scale-105 active:scale-95 shadow-lg">Add</button>

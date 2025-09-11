@@ -9,7 +9,8 @@ import LoginPage from './pages/LoginPage.tsx'
 import DashboardPage from './pages/DashboardPage.tsx'
 
 async function enableMocking() {
-  if (import.meta.env.PROD) return
+  const shouldEnable = import.meta.env.DEV || import.meta.env.VITE_ENABLE_MSW === 'true'
+  if (!shouldEnable) return
   const { worker } = await import('./mocks/browser')
   await worker.start({ serviceWorker: { url: '/mockServiceWorker.js' } })
 }
