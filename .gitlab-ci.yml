@@ -1,0 +1,39 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  IMAGE_NAME: $CI_REGISTRY_IMAGE/task-mgmt
+  PORT: 4173
+
+# Step 1: Build and Push Docker image
+build_image:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    # Login to GitLab's container registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    # Build and push image
+    - docker build -t $IMAGE_NAME .
+    - docker push $IMAGE_NAME
+
+# Step 2: Run Docker container
+run_container:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    # Login again (deploy stage is a new environment)
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    # Pull the previously built image
+    - docker pull $IMAGE_NAME
+    # Stop & remove existing container if any
+    - docker stop task-mgmt || true
+    - docker rm task-mgmt || true
+    # Run new container
+    - docker run -d -p $PORT:$PORT --name task-mgmt $IMAGE_NAME
+  only:
+    - main
